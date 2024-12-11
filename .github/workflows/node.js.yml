@@ -39,6 +39,12 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t sachin816/image .
+        
+
+      
+      - name: Tag Docker image
+        run: docker tag image sachin816/image:v1.0
+        
 
   #     - name: Push Docker image to Docker Hub
   #       run: docker push sachin816/wizinoa:latest
