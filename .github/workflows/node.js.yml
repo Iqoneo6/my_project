@@ -41,7 +41,7 @@ jobs:
         run: docker build -t sachin816/cicd-pipeline .
 
       - name: Docker Image remove
-        run : docker image prune  
+        run : docker image prune -f 
 
 
       - name: Tag Docker image
