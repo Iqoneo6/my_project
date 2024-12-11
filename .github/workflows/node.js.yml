@@ -39,16 +39,19 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t sachin816/cicd-pipeline .
+
+      - name: Tag Docker image
+        run: docker tag sachin816/cicd-pipeline:latest sachin816/cicd-pipeline:v1.0
       
       - name: Push Docker image to Docker Hub
-        run: docker push sachin816/cicd-pipeline:latest
+        run: docker push sachin816/cicd-pipeline:v1.0
 
   deploy-docker:
     runs-on: self-hosted  
 
     steps:
       - name: Pull Docker image
-        run: sudo docker pull sachin816/cicd-pipeline:latest
+        run: sudo docker pull sachin816/cicd-pipeline:v1.0
 
       - name: Delete old Docker container
         run: sudo docker rm -f react || true  
