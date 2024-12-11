@@ -48,7 +48,7 @@ jobs:
 
     steps:
       - name: Pull Docker image
-        run: sudo docker pull sachin816/cicd -pipeline:latest
+        run: sudo docker pull sachin816/cicd-pipeline:latest
 
       - name: Delete old Docker container
         run: sudo docker rm -f react || true  
