@@ -38,33 +38,30 @@ jobs:
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
       - name: Build Docker image
-        run: docker build -t sachin816/image .
-        
+        run: docker build -t sachin816/cicd-pipeline .
 
-      
       - name: Tag Docker image
-        run: docker tag image sachin816/image:v1.0
-        
+        run: docker tag sachin816/cicd-pipeline:latest sachin816/cicd-pipeline:v1.0
+      
+      - name: Push Docker image to Docker Hub
+        run: docker push sachin816/cicd-pipeline:v1.0
 
-  #     - name: Push Docker image to Docker Hub
-  #       run: docker push sachin816/wizinoa:latest
+  deploy-docker:
+    runs-on: self-hosted  
 
-  # deploy-docker:
-  #   runs-on: self-hosted  
+    steps:
+      - name: Pull Docker image
+        run: sudo docker pull sachin816/cicd-pipeline:v1.0
 
-  #   steps:
-  #     - name: Pull Docker image
-  #       run: sudo docker pull sachin816/wizinoa:latest
+      - name: Delete old Docker container
+        run: sudo docker rm -f react || true  
 
-  #     - name: Delete old Docker container
-  #       run: sudo docker rm -f react || true  
+      - name: Run Docker container
+        run: sudo docker run -d -p 8000:8000 --name container1 sachin816/cicd-pipeline:v1.0
 
-  #     - name: Run Docker container
-  #       run: sudo docker run -d -p 4000:4000 --name react sachin816/wizinoa
+  domain_hoster:
+    runs-on: self-hosted  
 
-  # domain_hoster:
-  #   runs-on: self-hosted  
-
-  #   steps:
-  #     - name: Restart Nginx
-  #       run: sudo service nginx restart
+    steps:
+      - name: Restart Nginx
+        run: sudo service nginx restart
