@@ -50,22 +50,22 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: docker push sachin816/cicd-pipeline:v1.0
 
-  # deploy-docker:
-  #   runs-on: self-hosted  
+  deploy-docker:
+    runs-on: self-hosted  
 
-  #   steps:
-  #     - name: Pull Docker image
-  #       run: sudo docker pull sachin816/cicd-pipeline:v1.0
+    steps:
+      - name: Pull Docker image
+        run: sudo docker pull sachin816/cicd-pipeline:v1.0
 
-  #     - name: Delete old Docker container
-  #       run: sudo docker rm -f container1 || true  
+      - name: Delete old Docker container
+        run: sudo docker rm -f container1 || true  
 
-  #     - name: Run Docker container
-  #       run: sudo docker run -d -p 8000:8000 --name container1 sachin816/cicd-pipeline:v1.0
+      - name: Run Docker container
+        run: sudo docker run -d -p 8000:8000 --name container1 sachin816/cicd-pipeline:v1.0
 
-  # domain_hoster:
-  #   runs-on: self-hosted  
+  domain_hoster:
+    runs-on: self-hosted  
 
-  #   steps:
-  #     - name: Restart Nginx
-  #       run: sudo service nginx restart
+    steps:
+      - name: Restart Nginx
+        run: sudo service nginx restart
