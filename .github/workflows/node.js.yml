@@ -38,12 +38,12 @@ jobs:
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
       - name: Build Docker image
-        run: docker build -t sachin816/myimage .
+        run: docker build -t sachin816/cicd-pipeline .
         
 
       
-      - name: Tag Docker image
-        run: docker tag image sachin816/myimage:v1.0
+      # - name: Tag Docker image
+      #   run: docker tag image sachin816/myimage:v1.0
         
 
   #     - name: Push Docker image to Docker Hub
