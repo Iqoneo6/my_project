@@ -44,7 +44,7 @@ jobs:
         run: docker build -t sachin816/cicd-pipeline .
 
       - name: Tag Docker image
-        run: docker tag  sachin816/cicd-pipeline:v1.0
+        run: docker tag sachin816/cicd-pipeline sachin816/cicd-pipeline:v1.0
       
       - name: Push Docker image to Docker Hub
         run: docker push sachin816/cicd-pipeline:v1.0
