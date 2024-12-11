@@ -57,7 +57,7 @@ jobs:
         run: sudo docker rm -f react || true  
 
       - name: Run Docker container
-        run: sudo docker run -d -p 5000:5000 --name container sachin816/cicd-pipeline
+        run: sudo docker run -d -p 6000:6000 --name container sachin816/cicd-pipeline:v1.0
 
   domain_hoster:
     runs-on: self-hosted  
