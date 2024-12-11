@@ -40,7 +40,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t sachin816/cicd-pipeline .
 
-          - name: Docker Image remove
+      - name: Docker Image remove
         run : docker image prune  
 
 
