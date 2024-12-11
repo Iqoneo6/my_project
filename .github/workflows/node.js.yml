@@ -41,14 +41,14 @@ jobs:
         run: docker build -t sachin816/cicd-pipeline .
       
       - name: Push Docker image to Docker Hub
-        run: docker push sachin816/cicd-pipeline:v1.0
+        run: docker push sachin816/cicd-pipeline:latest
 
   deploy-docker:
     runs-on: self-hosted  
 
     steps:
       - name: Pull Docker image
-        run: sudo docker pull sachin816/wizinoa:v1
+        run: sudo docker pull sachin816/wizinoa:latest
 
       - name: Delete old Docker container
         run: sudo docker rm -f react || true  
