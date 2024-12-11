@@ -1,4 +1,4 @@
-name: My_ProjecT
+name: My_Project
 
 on:
   push:
@@ -57,7 +57,7 @@ jobs:
         run: sudo docker rm -f react || true  
 
       - name: Run Docker container
-        run: sudo docker run -d -p 6000:6000 --name contain sachin816/cicd-pipeline:v1.0
+        run: sudo docker run -d -p 8000:8000 --name container1 sachin816/cicd-pipeline:v1.0
 
   domain_hoster:
     runs-on: self-hosted  
