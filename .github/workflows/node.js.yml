@@ -37,13 +37,6 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
-      - name: Docker Image remove
-        run : docker image prune -f 
-    
-      - name: Build Docker image
-        run: docker build -t sachin816/cicd-pipeline .
-
-
       - name: Tag Docker image
         run: docker tag sachin816/cicd-pipeline sachin816/cicd-pipeline:v1.0
       
@@ -56,6 +49,9 @@ jobs:
     steps:
       - name: Pull Docker image
         run: sudo docker pull sachin816/cicd-pipeline:v1.0
+
+      - name: Docker Image remove
+        run : docker image prune -f 
 
       - name: Delete old Docker container
         run: sudo docker rm -f container1 || true  
