@@ -38,12 +38,12 @@ jobs:
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
       - name: Build Docker image
-        run: docker build -t sachin816/image .
+        run: docker build -t sachin816/myimage .
         
 
       
       - name: Tag Docker image
-        run: docker tag image sachin816/image:v1.0
+        run: docker tag image sachin816/myimage:v1.0
         
 
   #     - name: Push Docker image to Docker Hub
