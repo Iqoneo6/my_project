@@ -1,67 +1,80 @@
-name: First
-
+name: my_project
+ 
 on:
   push:
     branches:
       - develop  
-
+ 
 jobs:
   build-node:
     runs-on: self-hosted  
-
+ 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+ 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'  
-
+ 
       - name: Install dependencies
         run: npm install  
-
+ 
       - name: Build the project
         run: npm run build  
-
+ 
   build-docker:
     runs-on: ubuntu-latest  
-
+ 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+ 
       - name: Login to Docker Hub
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+<<<<<<< HEAD
 
+=======
+      - name: Docker Image remove
+        run : docker image prune  
+ 
+      - name: Build Docker image
+        run: docker build -t sachin816/cicd-pipeline .
+ 
+>>>>>>> 0d4800255cace3c47fd955bedb22fce9aec8616a
       - name: Tag Docker image
-        run: docker tag sachin816/cicd-pipeline sachin816/cicd-pipeline:v1.0
-      
+        run: docker tag sachin816/cicd-pipeline:latest sachin816/cicd-pipeline:v1.0
+     
       - name: Push Docker image to Docker Hub
         run: docker push sachin816/cicd-pipeline:v1.0
-
+ 
   deploy-docker:
     runs-on: self-hosted  
-
+ 
     steps:
       - name: Pull Docker image
         run: sudo docker pull sachin816/cicd-pipeline:v1.0
+<<<<<<< HEAD
 
       - name: Docker Image remove
         run : docker image prune -f 
 
+=======
+ 
+>>>>>>> 0d4800255cace3c47fd955bedb22fce9aec8616a
       - name: Delete old Docker container
         run: sudo docker rm -f container1 || true  
-
+ 
       - name: Run Docker container
         run: sudo docker run -d -p 8000:8000 --name container1 sachin816/cicd-pipeline:v1.0
-
+ 
   domain_hoster:
     runs-on: self-hosted  
-
+ 
     steps:
       - name: Restart Nginx
         run: sudo service nginx restart
